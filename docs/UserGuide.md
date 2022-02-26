@@ -119,12 +119,11 @@ Format: `showfriends`
 
 ### Show a specific friend: `showfriend`
 
-Shows page containing the full details related to an existing friend in the address book. By default only the latest 10 logs are displayed in this page.
+Shows page containing the full details related to an existing friend in the address book. By default, only the latest 10 logs are displayed in this page.
 
 Format: `showfriend n/NAME -alllogs`
 
 * NAME field **must** be provided.
-* If there exists more than one friend with the same name, all the friends with that particular name will be displayed, each with an accompanying index, after which the user may enter the index of the friend they wish it view.
 * If the `-alllogs` flag is provided all the logs contained in that person will be displayed instead of the default 10 logs.
 
 Examples:
