@@ -55,7 +55,9 @@ public class Person {
         return address;
     }
 
-    public Remark getRemark() { return  this.remark;}
+    public Remark getRemark() {
+        return this.remark;
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -98,7 +100,7 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags())
-                && otherPerson.getRemark().equals(this.getRemark());
+                && otherPerson.getRemark().equals(getRemark());
     }
 
     @Override
