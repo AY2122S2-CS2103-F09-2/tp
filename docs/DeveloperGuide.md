@@ -283,32 +283,49 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the Amigos and the **Actor** is the user, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: E03 - Checking all events**
+
+**Guarantees**
+
+* If any events exist within the system they will be displayed.
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to show all events
+2. Amigos switches the GUI to the events tab.
+3. Amigos displays all possible events.
 
-    Use case ends.
+   Use case ends
 
 **Extensions**
+* 
+* 3a. There are no events to show.
+    * 3a1. Amigos displays an empty interface with the message “No events”.
 
-* 2a. The list is empty.
+      Use case ends
 
-  Use case ends.
+**Use case: UC02 - Checking details of a friend**
 
-* 3a. The given index is invalid.
+**MSS**
 
-    * 3a1. AddressBook shows an error message.
+1. User requests to see all friends in Amigos
+2. Amigos switches the GUI to the friends tab.
+3. Amigos displays all possible friends.
+4. User requests to view full details of a particular friend.
+5. Amigos displays a page containing the full details of that particular friend.
 
-      Use case resumes at step 2.
+   Use case ends
 
-*{More to be added}*
+**Extensions**
+* 3a. There are no existing friends.
+    * 3a.1 Amigos displays an empty interface with the message “No friends yet”.
+        
+      Use case ends
+* 4a. User wants to see all the logs of a person
+    * 4a.1 Amigos displays a page containing the full details of that friend accompanied by all the logs
+      Use Case ends
 
 ### Non-Functional Requirements
 
