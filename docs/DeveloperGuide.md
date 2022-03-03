@@ -320,36 +320,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list friends.
-2.  Amigos shows a list of friends.
-3.  User requests to delete a specific friend in the list.
-4.  Amigos deletes the friend and clears the user input.
-
-    Use case ends.
-
-**Extensions**
+1. User requests to list friends.
+2. Amigos shows a list of friends.
+3. User requests to delete a specific friend in the list.
+4. Amigos deletes the friend and clears the user input.
 
 * 2a. The list is empty.
     * Use case ends.
 
 * 2b. User requests to delete all friends.
-   * 2b1. Amigos deletes all friends and clears the user input.
-   
-   Use case ends.
-    
+    * 2b1. Amigos deletes all friends and clears the user input.
 
-* 3a. No name is entered by the user. 
-   * 3a1. Amigos requests user to enter a name.
-   * 3a2. User reenters the command along with a valid name.
-     
-   Use case resumes at step 4 if newly-entered user input is valid, otherwise it may reach 3a/3b again. 
+  Use case ends.
+
+
+* 3a. No name is entered by the user.
+    * 3a1. Amigos requests user to enter a name.
+    * 3a2. User reenters the command along with a valid name.
+
+  Use case resumes at step 4 if newly-entered user input is valid, otherwise it may reach 3a/3b again.
 
 
 * 3b. Amigos finds no contact with the given name.
     * 3b1. Amigos requests user to check input and reenter.
-    * 3b2. User reenters the command along with a valid name. 
+    * 3b2. User reenters the command along with a valid name.
 
-    Use case resumes at step 4 if newly-entered user input is valid, otherwise it may reach 3a/3b again.
+  Use case resumes at step 4 if newly-entered user input is valid, otherwise it may reach 3a/3b again.
 
 
 **Use case: F03 - Edit a friend**
@@ -362,7 +358,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to list friends.
 2.  Amigos shows a list of friends.
 3.  User requests to edit details of a specific friend in the list.
-4.  Amigos edits the details of the friend accordingly and clears user input. 
+4.  Amigos edits the details of the friend accordingly and clears user input.
 
     Use case ends.
 
@@ -370,27 +366,48 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
     * Use case ends.
-
+    
 
 * 3a. No name is entered by the user.
     * 3a1. Amigos requests user to enter a name.
     * 3a2. User reenters the command along with a valid name and other relevant fields (at least one) to edit.
 
-    Use case resumes at step 4 if newly-entered user input is valid, otherwise it may reach 3a/3b/3c again.
-    
+  Use case resumes at step 4 if newly-entered user input is valid, otherwise it may reach 3a/3b/3c again.
+
 
 * 3b. Amigos finds no contact with the given name.
     * 3b1. Amigos requests user to check input and reenter.
-    * 3b2. User reenters the command along with a valid name and other relevant fields (at least one) to edit. 
+    * 3b2. User reenters the command along with a valid name and other relevant fields (at least one) to edit.
 
-    Use case resumes at step 4 if newly-entered user input is valid, otherwise it may reach 3a/3b/3c again.
-    
+  Use case resumes at step 4 if newly-entered user input is valid, otherwise it may reach 3a/3b/3c again.
 
-* 3c. A valid name is entered by user but no fields to edit are given.  
+
+* 3c. A valid name is entered by user but no fields to edit are given.
     * 3c1. Amigos requests user to enter at least one field to edit.
     * 3c2. User reenters command and name, along with at least one field to edit.
-  
-    Use case resumes at step 4 if newly-entered user input is valid, otherwise it may reach 3a/3b/3c again.
+
+  Use case resumes at step 4 if newly-entered user input is valid, otherwise it may reach 3a/3b/3c again.
+
+**Use case: F04 - Checking details of a friend**
+
+**MSS**
+
+1. User requests to see all friends in Amigos
+2. Amigos switches the GUI to the friends tab.
+3. Amigos displays all possible friends.
+4. User requests to view full details of a particular friend.
+5. Amigos displays a page containing the full details of that particular friend accompanied by some logs.
+
+   Use case ends
+
+**Extensions**
+* 3a. There are no existing friends.
+    * 3a.1 Amigos displays an empty interface with the message “No friends yet”.
+
+      Use case ends
+* 4a. User wants to see all the logs of a person
+    * 4a.1 Amigos displays a page containing the full details of that friend accompanied by all the logs
+      Use Case ends
 
 **Use case: L01 - Adding a new log to a friend**
 
@@ -399,36 +416,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-
-1. User decides to add a new log to a specific friend. 
-2. User keys in necessary details with the one-line command 
+1. User decides to add a new log to a specific friend.
+2. User keys in necessary details with the one-line command
 3. Amigos displays the friend and the specific log, and clears the input
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 2a. Amigos finds no friend with the given name.
-  * 2a1. Amigos clears the input, and requests user to check input and reenter.
-  * 2a2. User corrects command, and keys in edited command.
+    * 2a1. Amigos clears the input, and requests user to check input and reenter.
+    * 2a2. User corrects command, and keys in edited command.
 
   Use case resumes at step 3.
 
 
 * 2b. Amigos detects that user has requested for a pop-up window in the command.
-  * 2b1. Amigos creates a separate window, allowing for long-form text to be keyed in.
-  * 2b2. User keys in long form text into pop-up window, with first line as title.
-  * 2b3. User confirms entry, closing the window.
+    * 2b1. Amigos creates a separate window, allowing for long-form text to be keyed in.
+    * 2b2. User keys in long form text into pop-up window, with first line as title.
+    * 2b3. User confirms entry, closing the window.
 
   Use case resumes at step 3.
 
 
 * 2d. Amigos detects that an invalid format of the command has been keyed in.
-  * 2d1. Amigos clears the input and prompts the user with potential corrections, and requests for input.
-  * 2d2. User corrects command, and keys in edited command.
-  
+    * 2d1. Amigos clears the input and prompts the user with potential corrections, and requests for input.
+    * 2d2. User corrects command, and keys in edited command.
+
   Use case resumes at step 3.
-  
 
 
 **Use case: L02 - Editing a log of a single friend**
@@ -436,15 +451,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Guarantees:**
 * If successful, specified log will be overwritten and saved in storage.
 
-
 **MSS**
 
-
-1. User decides to edit a log in a specific friend. 
-2. User keys in necessary details with the one-line command. 
+1. User decides to edit a log in a specific friend.
+2. User keys in necessary details with the one-line command.
 3. Amigos clears the input and displays the friend and the specific log.
 
-    Use case ends.
+   Use case ends.
 
 
 **Extensions**
@@ -457,8 +470,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 * 2b. Amigos detects that the user has not requested to edit a specific log.
-  * 2b1. Amigos clears the input and provides a list of all logs (their titles) and an accompanying index, asking the user to key in the index.
-  * 2b2. User keys in the index.
+    * 2b1. Amigos clears the input and provides a list of all logs (their titles) and an accompanying index, asking the user to key in the index.
+    * 2b2. User keys in the index.
 
   Use case resumes at step 3.
 
@@ -467,8 +480,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2c1. Amigos clears the input and prompts the user with potential corrections, and requests for input.
     * 2c2. User corrects command, and keys in edited command.
 
-    Use case resumes at step 3.
-
+  Use case resumes at step 3.
 
 
 * 2d. Amigos detects that user has requested for a pop-up window in the command.
@@ -481,7 +493,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2e. Amigos detects that the requested friend has no logs to be edited.
     * 2e1. Amigos clears the input and notifies the user that this friend has no logs to be edited.
-
+  
   Use case ends.
 
 
@@ -509,31 +521,51 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 * 2b. Amigos detects that the user has not requested to delete a specific log.
-  * 2b1. Amigos clears the input and lists all logs of the friend with an index.
-  * 2b2. User keys in index, and deletes the log.
+    * 2b1. Amigos clears the input and lists all logs of the friend with an index.
+    * 2b2. User keys in index, and deletes the log.
 
   Use case resumes at step 3.
 
 
 * 2c. Amigos detects User has requested to delete all logs of all friends.
-  * 2c1. All logs in all friend are deleted.
+    * 2c1. All logs in all friend are deleted.
 
   Use case resumes at step 3.
 
 
 * 2d. Amigos detects that User has requested to delete all logs of a friend.
-  * 2d1. Amigos deletes all logs of the friend.
+    * 2d1. Amigos deletes all logs of the friend.
 
   Use case resumes at step 3.
 
 
 * 2e. Amigos detects an invalid combination of arguments.
-  * 2e1. Amigos clears the input and requests the user to check input and reenter if necessary.
+    * 2e1. Amigos clears the input and requests the user to check input and reenter if necessary.
 
 * 2f. Amigos detects that the requested friend has no logs.
     * 2f1. Amigos clears the input and notifies the user that this friend has no logs to be deleted.
 
   Use case ends.
+
+**Use case: E01 - Checking all events**
+
+**Guarantees**
+
+* If any events exist within the system they will be displayed.
+
+**MSS**
+
+1. User requests to show all events
+2. Amigos switches the GUI to the events tab.
+3. Amigos displays all possible events.
+
+    Use case ends
+
+**Extensions**
+* 3a. There are no events to show.
+    * 3a1. Amigos displays an empty interface with the message “No events”.
+      
+  Use case ends
 
 ### Non-Functional Requirements
 
