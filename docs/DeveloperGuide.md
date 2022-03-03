@@ -312,7 +312,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to see all friends in Amigos.
 2. Amigos switches the GUI to the friends tab and displays all possible friends.
 3. User requests to view full details of a particular friend.
-4. Amigos displays a page containing the full details of that particular friend and the friends associated logs.
+4. Amigos displays a page containing the full details of that particular friend and some logs of that friend.
 
    Use case ends
 
