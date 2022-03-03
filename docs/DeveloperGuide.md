@@ -291,11 +291,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-<<<<<<< HEAD
 (For all use cases below, the **System** is the `Amigos` and the **Actor** is the `user`, unless specified otherwise)
-=======
-(For all use cases below, the **System** is Amigos and the **Actor** is the user, unless specified otherwise)
->>>>>>> 3570a60 (Minor Changes to improve quality of DG)
 
 **Use case: F01 - Add a friend**
 
@@ -359,18 +355,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list friends.
-2.  Amigos shows a list of friends.
-3.  User requests to edit details of a specific friend in the list.
-4.  Amigos edits the details of the friend accordingly and clears user input.
-
-    Use case ends.
-
-**Extensions**
+1. User requests to list friends.
+2. Amigos shows a list of friends.
+3. User requests to edit details of a specific friend in the list.
+4. Amigos edits the details of the friend accordingly and clears user input.
 
 * 2a. The list is empty.
     * Use case ends.
-    
+
 
 * 3a. No name is entered by the user.
     * 3a1. Amigos requests user to enter a name.
@@ -411,7 +403,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends
 * 4a. User wants to see all the logs of a person
     * 4a.1 Amigos displays a page containing the full details of that friend accompanied by all the logs
-      Use Case ends
+    
+    Use Case ends
 
 **Use case: L01 - Adding a new log to a friend**
 
@@ -497,7 +490,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2e. Amigos detects that the requested friend has no logs to be edited.
     * 2e1. Amigos clears the input and notifies the user that this friend has no logs to be edited.
-  
+
   Use case ends.
 
 
@@ -549,9 +542,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2f. Amigos detects that the requested friend has no logs.
     * 2f1. Amigos clears the input and notifies the user that this friend has no logs to be deleted.
 
-  Use case ends.
+    Use case ends.
 
-**Use case: E01 - Checking all events**
+**Use case: E03 - Checking all events**
 
 **Guarantees**
 
@@ -562,38 +555,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to show all events.
 2. Amigos switches the GUI to the events tab and displays all events.
 
-    Use case ends
-
-**Extensions**
-* 3a. There are no events to show.
-    * 3a1. Amigos displays an empty interface with the message “No events”.
-
-  Use case ends
-
-
-**Use case: UC02 - Checking details of a friend**
-
-**MSS**
-
-1. User requests to see all friends in Amigos.
-2. Amigos switches the GUI to the friends tab and displays all possible friends.
-3. User requests to view full details of a particular friend.
-4. Amigos displays a page containing the full details of that particular friend and some logs of that friend.
-
    Use case ends
 
 **Extensions**
-* 3a. There are no existing friends.
-    * 3a.1 Amigos displays an empty interface with the message “No friends yet”.
+* 
+* 3a. There are no events to show.
+    * 3a1. Amigos displays an empty interface with the message “No events”.
 
-* 3b. Amigos finds an issue in the given input (e.g incorrect format, no friend found with the name entered)
-     * 3b.1 Amigos requests user to check input and reenter.
-     * 3b.2 User corrects command (if desired), and keys in edited command.
-      Use case resumes at 4 if the user corrects the command but may reach 3b again if the input remains erroneous.
-* 4a. User wants to see all the logs of a person
-    * 4a.1 Amigos displays a page containing the full details of that friend accompanied by all the logs.
-      Use Case ends
-
+    Use case ends.
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
