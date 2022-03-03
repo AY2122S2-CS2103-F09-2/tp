@@ -555,7 +555,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to show all events.
 2. Amigos switches the GUI to the events tab and displays all events.
 
-   Use case ends
+**Extensions**
+* 3a. There are no events to show.
+    * 3a1. Amigos displays an empty interface with the message “No events”.
+
+  Use case ends
+
+**Use case: UC02 - Checking details of a friend**
+
+**MSS**
+
+1. User requests to see all friends in Amigos.
+2. Amigos switches the GUI to the friends tab and displays all possible friends.
+3. User requests to view full details of a particular friend.
+4. Amigos displays a page containing the full details of that particular friend and the friends associated logs.
 
 **Extensions**
 * 
