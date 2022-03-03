@@ -125,17 +125,14 @@ Format: `showfriend n/NAME -alllogs`
 * If the `-alllogs` flag is provided all the logs contained in that person will be displayed instead of the default 10 logs.
 
 Examples:
-* `showfriend n/John Doe` Will open up the page containing full details related to John Doe - his name, address, phone number, email, description, logs, and upcoming events with him.
-* `showfriend n/John Doe -alllogs` Will do the same as above except every single log will be displayed.
+* `showfriend n/John Doe`
+* `showfriend n/John Doe -alllogs`
 
 ### Show all events : `showevents`
 
 Shows all events stored in the address book. Switches GUI to the events tab.
 
 Format: `showevents`
-
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
