@@ -48,6 +48,23 @@ public class TypicalPersons {
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withAddress("chicago ave").build();
 
+    // With logs
+    public static final Person JAMES = new PersonBuilder().withName("JAMES BOND").withPhone("83382178")
+            .withEmail("jb@example.com").withAddress("Singapore street")
+            .withLogs(TypicalLogs.LOG_NO_DESCRIPTION).build(); // single log
+
+    public static final Person KAREN = new PersonBuilder().withName("KAREN K").withPhone("99999999")
+            .withEmail("kk@example.com").withAddress("some street")
+            .withLogs(TypicalLogs.LONG_LOG).build(); // single log
+
+    public static final Person LAUREN = new PersonBuilder().withName("Lauren Wong").withPhone("93829384")
+            .withEmail("laurenwong@example.com").withAddress("queen st.")
+            .withLogs(TypicalLogs.SHORT_LOG).build(); // single log
+
+    public static final Person MAVIS = new PersonBuilder().withName("Mavis Tan").withPhone("96382727")
+            .withEmail("mavis.tan@example.com").withAddress("king st.")
+            .withLogs(TypicalLogs.getTypicalLogs()).build(); // 3 logs
+
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
@@ -71,6 +88,8 @@ public class TypicalPersons {
     }
 
     public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE,
+                FIONA, GEORGE, JAMES, KAREN, LAUREN, MAVIS
+        ));
     }
 }

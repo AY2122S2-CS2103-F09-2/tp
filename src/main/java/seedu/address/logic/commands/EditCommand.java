@@ -21,6 +21,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Log;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -54,7 +55,7 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param index                of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
@@ -98,8 +99,8 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        List<Log> updatedLogs = editPersonDescriptor.getLogs().orElse(personToEdit.getLogs());
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedLogs);
     }
 
     @Override
@@ -130,8 +131,10 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private List<Log> logs;
 
-        public EditPersonDescriptor() {}
+        public EditPersonDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -143,6 +146,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setLogs(toCopy.logs);
         }
 
         /**
@@ -199,6 +203,23 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code logs} to this object's {@code logs}.
+         */
+        public void setLogs(List<Log> logs) {
+            this.logs = logs;
+        }
+
+        /**
+         * Returns an unmodifiable list of logs, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         *
+         * @return {@code Optional#empty()} if {@code logs} is null.
+         */
+        public Optional<List<Log>> getLogs() {
+            return (logs != null) ? Optional.of(Collections.unmodifiableList(logs)) : Optional.empty();
         }
 
         @Override

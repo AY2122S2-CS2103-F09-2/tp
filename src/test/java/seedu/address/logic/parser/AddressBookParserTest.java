@@ -4,6 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.LOG_DESCRIPTION_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.LOG_TITLE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LOG_DESCRIPTION;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LOG_TITLE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -13,7 +17,9 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddLogCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -23,6 +29,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -41,17 +48,17 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_deletefriend() throws Exception {
+        DeleteCommand command = (DeleteCommand) parser.parseCommand("deletefriend n/Dummy Name");
+        assertEquals(new DeleteCommand(new Name("Dummy Name")), command);
+    }
+
+    @Test
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
     }
 
-    @Test
-    public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
-    }
 
     @Test
     public void parseCommand_edit() throws Exception {
@@ -86,6 +93,24 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_addLog() throws Exception {
+        Index targetIndex = INDEX_FIRST_PERSON;
+
+        // command
+        String validAddLogCommand = AddLogCommand.COMMAND_WORD + " "
+                + targetIndex.getOneBased() + LOG_TITLE_DESC + LOG_DESCRIPTION_DESC;
+
+        // expected command
+        AddLogCommand.AddLogDescriptor descriptor = new AddLogCommand.AddLogDescriptor();
+        descriptor.setNewTitle(VALID_LOG_TITLE);
+        descriptor.setNewDescription(VALID_LOG_DESCRIPTION);
+        AddLogCommand command = new AddLogCommand(INDEX_FIRST_PERSON, descriptor);
+
+        assertEquals(command, parser.parseCommand(validAddLogCommand));
+        assertTrue(parser.parseCommand(validAddLogCommand) instanceof AddLogCommand);
     }
 
     @Test

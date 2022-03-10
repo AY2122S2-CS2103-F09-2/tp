@@ -14,6 +14,7 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TypicalLogs;
 
 public class PersonTest {
 
@@ -87,5 +88,12 @@ public class PersonTest {
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+
+        // different logs (titles && description must match) -> returns false
+        editedAlice = new PersonBuilder(ALICE).withLogs(TypicalLogs.getTypicalLogs()).build();
+        assertFalse(ALICE.equals(editedAlice));
+        Person editedAliceWithDifferentDescriptions = new PersonBuilder(ALICE)
+                .withLogs(TypicalLogs.getIdenticalButDifferentTypicalLogs()).build();
+
     }
 }

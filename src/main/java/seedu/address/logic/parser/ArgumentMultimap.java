@@ -66,4 +66,16 @@ public class ArgumentMultimap {
     public boolean arePrefixesPresent(Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> this.getValue(prefix).isPresent());
     }
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return argumentMultimap.arePrefixesPresent(prefixes);
+    }
+
+    @Override
+    public String toString() {
+        return this.argMultimap.toString();
+    }
 }
