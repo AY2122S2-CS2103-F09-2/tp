@@ -14,6 +14,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.DateTime;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.FriendName;
@@ -26,13 +27,16 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_DATETIME = "15/13/2023 16:00";
 
-    private static final String VALID_NAME = "Rachel Walker";
+    private static final String VALID_NAME_1 = "Rachel Walker";
+    private static final String VALID_NAME_2 = "Billy Bob Johns";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_DATETIME = "15-12-2021 1635";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -68,14 +72,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
-        FriendName expectedName = new FriendName(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseFriendName(VALID_NAME));
+        FriendName expectedName = new FriendName(VALID_NAME_1);
+        assertEquals(expectedName, ParserUtil.parseFriendName(VALID_NAME_1));
     }
 
     @Test
     public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
-        String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        FriendName expectedName = new FriendName(VALID_NAME);
+        String nameWithWhitespace = WHITESPACE + VALID_NAME_1 + WHITESPACE;
+        FriendName expectedName = new FriendName(VALID_NAME_1);
         assertEquals(expectedName, ParserUtil.parseFriendName(nameWithWhitespace));
     }
 
@@ -192,5 +196,53 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseDateTime_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDateTime((String) null));
+    }
+
+    @Test
+    public void parseDateTime_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateTime(INVALID_DATETIME));
+    }
+
+    @Test
+    public void parseDateTime_validValueWithoutWhitespace_returnsDateTime() throws Exception {
+        DateTime expectedDateTime = new DateTime(VALID_DATETIME);
+        assertEquals(expectedDateTime, ParserUtil.parseDateTime(VALID_DATETIME));
+    }
+
+    @Test
+    public void parseDateTime_validValueWithWhitespace_returnsTrimmedDateTime() throws Exception {
+        String phoneWithWhitespace = WHITESPACE + VALID_DATETIME + WHITESPACE;
+        DateTime expectedDateTime = new DateTime(VALID_DATETIME);
+        assertEquals(expectedDateTime, ParserUtil.parseDateTime(phoneWithWhitespace));
+    }
+
+    @Test
+    public void parseFriendNames_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseFriendNames(null));
+    }
+
+    @Test
+    public void parseFriendNames_collectionWithInvalidFriendNames_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parseFriendNames(Arrays.asList(VALID_NAME_1, INVALID_NAME)));
+    }
+
+    @Test
+    public void parseFriendNames_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseFriendNames(Collections.emptyList()).isEmpty());
+    }
+
+    @Test
+    public void parseFriendNames_collectionWithValidFriendNames_returnsTagSet() throws Exception {
+        Set<FriendName> actualFriendNameSet = ParserUtil.parseFriendNames(Arrays.asList(VALID_NAME_1, VALID_NAME_2));
+        Set<FriendName> expectedFriendNameSet =
+                new HashSet<FriendName>(Arrays.asList(new FriendName(VALID_NAME_1), new FriendName(VALID_NAME_2)));
+
+        assertEquals(expectedFriendNameSet, actualFriendNameSet);
     }
 }

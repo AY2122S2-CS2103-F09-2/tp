@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EVENT_FRIENDS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD_FRIENDNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -47,6 +48,8 @@ public class EditEventCommand extends Command {
     public static final String MESSAGE_EDIT_EVENT_SUCCESS = "Edited Event: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the address book.";
+    public static final String MESSAGE_INVALID_FRIENDS_TO_REMOVE =
+            "One of the friends specified for removal does not exist.";
 
     public final Index index;
     public final EditEventDescriptor editEventDescriptor;
@@ -78,6 +81,9 @@ public class EditEventCommand extends Command {
         if (!eventToEdit.isSameEvent(editedEvent) && model.hasEvent(editedEvent)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
+        if (!model.areEventFriendsValid(editedEvent)) {
+            throw new CommandException(MESSAGE_INVALID_EVENT_FRIENDS);
+        }
 
         model.setEvent(eventToEdit, editedEvent);
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedEvent), false, false, true);
@@ -87,7 +93,8 @@ public class EditEventCommand extends Command {
      * Creates and returns a {@code Event} with the details of {@code eventToEdit}
      * edited with {@code editEventDescriptor}.
      */
-    private static Event createEditedEvent(Event eventToEdit, EditEventDescriptor editEventDescriptor) {
+    private static Event createEditedEvent(Event eventToEdit, EditEventDescriptor editEventDescriptor)
+            throws CommandException {
         assert eventToEdit != null;
 
         EventName updatedName = editEventDescriptor.getName().orElse(eventToEdit.getName());
@@ -98,6 +105,11 @@ public class EditEventCommand extends Command {
         Set<FriendName> currentFriendName = eventToEdit.getFriendNames();
         Set<FriendName> updatedFriendNames = new HashSet<>(currentFriendName);
         if (removeFriendNames != null) {
+            for (FriendName friendNameToRemove : removeFriendNames) {
+                if (!currentFriendName.contains(friendNameToRemove)) {
+                    throw new CommandException(MESSAGE_INVALID_FRIENDS_TO_REMOVE);
+                }
+            }
             updatedFriendNames.removeAll(removeFriendNames);
         }
         if (addFriendNames != null) {

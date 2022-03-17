@@ -22,7 +22,7 @@ public class DateTime {
     private static final DateTimeFormatter OUTPUT_FORMATTER =
             DateTimeFormatter.ofPattern("MMM d yyyy hh:mma");
 
-    private final LocalDateTime value;
+    private final LocalDateTime value; // please retrieve string via toInputFormat() instead.
 
     /**
      * Constructs an {@code DateTime}.

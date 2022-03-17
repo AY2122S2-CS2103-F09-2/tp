@@ -130,12 +130,14 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> names} into a {@code Set<Name>}.
+     * Parses {@code Collection<String> friend names} into a {@code Set<Name>}.
+     *
+     * @throws ParseException if a given {@code names} is invalid
      */
-    public static Set<FriendName> parseNames(Collection<String> names) throws ParseException {
+    public static Set<FriendName> parseFriendNames(Collection<String> names) throws ParseException {
         requireNonNull(names);
         final Set<FriendName> nameSet = new HashSet<>();
-        for (String name : names) {
+        for (String name: names) {
             nameSet.add(parseFriendName(name));
         }
         return nameSet;
@@ -194,20 +196,6 @@ public class ParserUtil {
             throw new ParseException(LogName.MESSAGE_CONSTRAINTS);
         }
         return title; // TODO: 8/3/2022 refactor into Title object next time
-    }
-
-    /**
-     * Parses a list of friend names
-     *
-     * @throws ParseException if a given {@code names} is invalid
-     */
-    public static Set<FriendName> parseFriendNames(Collection<String> names) throws ParseException {
-        requireNonNull(names);
-        final Set<FriendName> nameSet = new HashSet<>();
-        for (String name: names) {
-            nameSet.add(parseFriendName(name));
-        }
-        return nameSet;
     }
 
     public static String parseLogDescription(String description) throws ParseException {

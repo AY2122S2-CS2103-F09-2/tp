@@ -47,9 +47,9 @@ public class SampleDataUtil {
 
     public static Event[] getSampleEvents() {
         return new Event[] {
-            new Event(new EventName("Alex Birthday"), new DateTime("10-03-2022 1430"),
+            new Event(new EventName("Alex's Birthday"), new DateTime("10-03-2022 1430"),
                     new Description("Remember to bring cake."), getNameSet("Alex Yeoh", "David Li")),
-            new Event(new EventName("Weekends at Bernice"), new DateTime("10-04-2022 1835"),
+            new Event(new EventName("Weekends at Bernice's"), new DateTime("10-04-2022 1835"),
                  new Description(null), getNameSet("Bernice Yu")),
             new Event(new EventName("Boardgame Night"), new DateTime("12-04-2022 1945"),
                  new Description("We will be playing Monopoly."),

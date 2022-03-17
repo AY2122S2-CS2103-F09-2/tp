@@ -45,6 +45,7 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
         } else {
             description = new Description(null);
         }
+
         Set<FriendName> friendNames = ParserUtil.parseFriendNames(argMultimap.getAllValues(PREFIX_FRIEND_NAME));
 
         Event event = new Event(name, dateTime, description, friendNames);

@@ -1,5 +1,8 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TypicalEvents.ALEX_NAME;
+import static seedu.address.testutil.TypicalEvents.AMY_NAME;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,7 +22,8 @@ public class EventBuilder {
     public static final String DEFAULT_NAME = "Default Event";
     public static final String DEFAULT_DATE_TIME = "12-5-2022 1500";
     public static final String DEFAULT_DESCRIPTION = "Default Description";
-    public static final List<FriendName> DEFAULT_FRIENDLIST = List.of(new FriendName("Amy Bee"), new FriendName("Alex Yeoh"));
+    public static final List<FriendName> DEFAULT_FRIENDLIST =
+            List.of(new FriendName(AMY_NAME), new FriendName(ALEX_NAME));
 
     private EventName name;
     private DateTime dateTime;
