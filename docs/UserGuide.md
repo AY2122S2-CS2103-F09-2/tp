@@ -315,6 +315,7 @@ Please do not manually edit the save file to avoid the risk of data corruption.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+
 | Action                     | Command Alias | Format, Examples                                                                                                                                                                                                                                                       |
 |----------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add Friend**             | `af`          | `addfriend n/NAME  [p/PHONE_NUMBER] [e/EMAIL]  [a/ADDRESS] [d/DESCRIPTION] [t/TAG]...` <br> e.g., `addfriend n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Physics Major, Sarah’s friend. Met at Freshman Dinner. t/friend t/classmate` |
